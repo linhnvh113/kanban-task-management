@@ -36,6 +36,7 @@
       "error",
       { "extensions": [".ts", ".tsx"] }
     ],
+    "import/prefer-default-export": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
