@@ -12,6 +12,7 @@ const config = {
   quoteProps: "as-needed",
   bracketSpacing: true,
   bracketSameLine: false,
+  tailwindFunctions: ["cva"],
   plugins: ["prettier-plugin-tailwindcss"],
 };
 
