@@ -22,20 +22,18 @@ export default function BoardDialog() {
   const isOpen = !!(types.findLast(() => true) === 'board-form');
 
   return (
-    isOpen && (
-      <Dialog open={isOpen} onOpenChange={onClose}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>{board ? 'Edit Board' : 'Add New Board'}</DialogTitle>
-          </DialogHeader>
-          <BoardForm formData={board} />
-          <DialogFooter>
-            <Button type="submit" form="board-form" className="w-full">
-              {board ? 'Saves Changes' : 'Create New Board'}
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-    )
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>{board ? 'Edit Board' : 'Add New Board'}</DialogTitle>
+        </DialogHeader>
+        <BoardForm formData={board} />
+        <DialogFooter>
+          <Button type="submit" form="board-form" className="w-full">
+            {board ? 'Saves Changes' : 'Create New Board'}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }
