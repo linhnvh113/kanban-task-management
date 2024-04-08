@@ -82,7 +82,7 @@
   }
 
   h1 {
-    @apply text-2xl;
+    @apply text-lg md:text-2xl;
   }
 
   h2 {
@@ -95,5 +95,17 @@
 
   h4 {
     @apply text-xs tracking-widest;
+  }
+
+  ::-webkit-scrollbar {
+    @apply h-2 w-1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-white;
   }
 }

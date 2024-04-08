@@ -1,12 +1,13 @@
 'use client';
 
+import { SquareKanban } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
-import IconBoard from '@/assets/icon-board.svg';
+import type { Board } from '@prisma/client';
 
 interface Props {
-  board: any;
+  board: Board;
 }
 
 export default function NavigationItem({ board }: Props) {
@@ -22,7 +23,7 @@ export default function NavigationItem({ board }: Props) {
             : 'text-zinc-500 hover:bg-background hover:text-primary'
         }`}
       >
-        <IconBoard />
+        <SquareKanban />
         <h3>{board.name}</h3>
       </Link>
     </div>

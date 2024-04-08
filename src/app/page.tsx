@@ -1,9 +1,13 @@
-import LogoLight from '@/assets/logo-light.svg';
+import { redirect } from 'next/navigation';
 
-export default function Page() {
-  return (
-    <div>
-      <LogoLight />
-    </div>
-  );
+import InitialDialog from '@/components/dialogs/initial-dialog';
+import { getBoard } from '@/server/actions';
+
+export default async function Page() {
+  const board = await getBoard();
+  if (board) {
+    return redirect(`/boards/${board.id}`);
+  }
+
+  return <InitialDialog />;
 }

@@ -11,7 +11,9 @@ const config = {
   prefix: '',
   theme: {
     container: {
-      center: true,
+      screens: {
+        DEFAULT: '100%',
+      },
       padding: {
         DEFAULT: '1rem',
         md: '1.5rem',

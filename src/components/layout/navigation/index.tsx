@@ -1,35 +1,41 @@
-import HideSidebar from '@/assets/icon-hide-sidebar.svg';
+'use client';
+
 import ModeToggle from '@/components/mode-toggle';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import data from '@/dev-data/data.json';
+import { useLayoutStore } from '@/hooks/use-layout-store';
 
+import NavigationAction from './navigation-action';
+import NavigationClose from './navigation-close';
 import NavigationItem from './navigation-item';
+import NavigationOpen from './navigation-open';
 
-export default function Navigation() {
-  return (
-    <aside className="sticky bottom-0 left-0 overflow-hidden md:top-20">
-      <div className="flex h-[calc(100vh-80px)] flex-col bg-white py-8">
-        <div className="flex-1 pr-5">
-          <h4 className="pb-5 pl-6">ALL BOARDS (3)</h4>
-          <ScrollArea>
-            {data.boards.map((board) => (
+import type { Board } from '@prisma/client';
+
+interface Props {
+  boards: Board[];
+}
+
+export default function Navigation({ boards }: Props) {
+  const { isNavOpen } = useLayoutStore();
+
+  return isNavOpen ? (
+    <aside className="sticky bottom-0 left-0 z-10 hidden border-r md:top-20 md:block md:min-w-[260px] xl:top-24 xl:min-w-[300px]">
+      <div className="flex flex-col bg-white py-8 md:h-[calc(100vh-80px)] xl:h-[calc(100vh-96px)]">
+        <div className="flex-1 space-y-5">
+          <h2 className="md:px-5 xl:px-6">{`ALL BOARDS (${boards.length})`}</h2>
+          <ScrollArea className="md:pr-5 xl:pr-6">
+            {boards.map((board) => (
               <NavigationItem key={board.name} board={board} />
             ))}
+            <NavigationAction />
           </ScrollArea>
         </div>
 
-        <div className="px-2.5">
-          <ModeToggle />
-        </div>
-
-        <button
-          type="button"
-          className="text-medium-grey hover:text-main-purple-hover flex cursor-pointer select-none items-center gap-4 p-2"
-        >
-          <HideSidebar />
-          <h3>Hide Sidebar</h3>
-        </button>
+        <ModeToggle />
+        <NavigationClose />
       </div>
     </aside>
+  ) : (
+    <NavigationOpen />
   );
 }

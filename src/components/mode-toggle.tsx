@@ -11,9 +11,10 @@ export default function ModeToggle() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <div className="flex items-center justify-center gap-6 rounded-md bg-background py-3.5">
+    <div className="flex items-center justify-center gap-6 rounded-md bg-background py-3.5 md:mx-5 xl:mx-6">
       <LightTheme />
       <Switch
+        title="Toggle Dark Mode"
         checked={theme === 'dark'}
         onCheckedChange={() => setTheme(theme === 'light' ? 'dark' : 'light')}
       />
